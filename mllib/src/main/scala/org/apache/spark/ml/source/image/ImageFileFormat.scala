@@ -69,6 +69,7 @@ private[image] class ImageFileFormat extends FileFormat with DataSourceRegister 
     (file: PartitionedFile) => {
       val emptyUnsafeRow = new UnsafeRow(0)
       if (!imageSourceOptions.dropInvalid && requiredSchema.isEmpty) {
+        // scalastyle:off println
         println("Returning empty row")
         Iterator(emptyUnsafeRow)
       } else {
@@ -81,8 +82,10 @@ private[image] class ImageFileFormat extends FileFormat with DataSourceRegister 
         } finally {
           Closeables.close(stream, true)
         }
+        // scalastyle:off println
         println("file: " + file.filePath)
         val resultOpt = ImageSchema.decode(origin, bytes)
+        // scalastyle:off println
         resultOpt.foreach{ println }
         val filteredResult = if (imageSourceOptions.dropInvalid) {
           resultOpt.iterator
