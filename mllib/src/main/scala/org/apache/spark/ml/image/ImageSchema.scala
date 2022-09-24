@@ -138,7 +138,10 @@ object ImageSchema {
       //   no real I/O exceptions are expected.
       // - `ImageIO.read` can throw `javax.imageio.IIOException` that is technically
       //   a runtime exception but it inherits IOException.
-      case _: Throwable => null
+      case e: Throwable => {
+        println("ERROR: " + e.getMessage())
+        null
+      }
     }
 
     if (img == null) {
