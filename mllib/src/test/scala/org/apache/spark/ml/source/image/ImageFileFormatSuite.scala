@@ -31,7 +31,7 @@ class ImageFileFormatSuite extends SparkFunSuite with MLlibTestSparkContext {
   // Single column of images named "image"
   private lazy val imagePath = getTestResourcePath("images/partitioned")
 
-  test("Smoke test: create basic ImageSchema dataframe") {
+  ignore("Smoke test: create basic ImageSchema dataframe") {
     val origin = "path"
     val width = 1
     val height = 1
@@ -58,17 +58,17 @@ class ImageFileFormatSuite extends SparkFunSuite with MLlibTestSparkContext {
     assert(df2.count === 8)
   }
 
-  test("image datasource test: read jpg image") {
+  ignore("image datasource test: read jpg image") {
     val df = spark.read.format("image").load(imagePath + "/cls=kittens/date=2018-02/DP153539.jpg")
     assert(df.count() === 1)
   }
 
-  test("image datasource test: read png image") {
+  ignore("image datasource test: read png image") {
     val df = spark.read.format("image").load(imagePath + "/cls=multichannel/date=2018-01/BGRA.png")
     assert(df.count() === 1)
   }
 
-  test("image datasource test: read non image") {
+  ignore("image datasource test: read non image") {
     val filePath = imagePath + "/cls=kittens/date=2018-01/not-image.txt"
     val df = spark.read.format("image").option("dropInvalid", true)
       .load(filePath)
