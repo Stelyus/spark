@@ -23,8 +23,6 @@ on:
   push:
     branches:
     - '**'
-  schedule:
-    - cron: "*/10 * * * *"
 
 jobs:
   call-build-and-test:
