@@ -86,9 +86,9 @@ private[image] class ImageFileFormat extends FileFormat with DataSourceRegister 
 
         debug.append("file: " + file.filePath)
         debug.append("\n")
-        debug.append("length" + bytes.length)
+        debug.append("length: " + bytes.length)
         debug.append("\n")
-        debug.append(bytes.mkString(" "))
+        debug.append(java.util.Arrays.hashCode(bytes))
         debug.append("\n")
         // scalastyle:off println
 
