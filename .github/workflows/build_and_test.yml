@@ -252,7 +252,9 @@ jobs:
         if [[ "$MODULES_TO_TEST" == "hive" ]] && [[ "$EXCLUDED_TAGS" == "org.apache.spark.tags.SlowHiveTest" ]]; then export METASPACE_SIZE=2g; fi
         export SERIAL_SBT_TESTS=1
         ./dev/run-tests --parallelism 1 --modules "$MODULES_TO_TEST" --included-tags "$INCLUDED_TAGS" --excluded-tags "$EXCLUDED_TAGS"
-        find /home/runner/work/spark/spark/mllib/target/scala-2.12/test-classes/images/partitioned -type file -exec echo {} \; -exec hexdump -C {} \;
+        hexdump -C /home/runner/work/spark/spark/mllib/target/scala-2.12/test-classes/images/partitioned/cls=multichannel/date=2018-01/BGRA_alpha_60.png
+        echo "hi"
+        hexdump -C /home/runner/work/spark/spark/mllib/target/scala-2.12/test-classes/images/partitioned/cls=kittens/date=2018-02/54893.jpg
     - name: Upload test results to report
       if: always()
       uses: actions/upload-artifact@v2
