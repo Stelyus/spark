@@ -82,10 +82,18 @@ private[image] class ImageFileFormat extends FileFormat with DataSourceRegister 
         } finally {
           Closeables.close(stream, false)
         }
+        val debug = new StringBuilder()
+
+        debug.append("file: " + file.filePath)
+        debug.append("\n")
+        debug.append("length" + bytes.length)
+        debug.append("\n")
+        debug.append(bytes.mkString(" "))
+        debug.append("\n")
         // scalastyle:off println
-        println("file: " + file.filePath)
-        println("length" + bytes.length)
-        for (i <- 0 to Math.min(bytes.length, 50)) println(bytes(i))
+
+        println(debug.toString)
+
         val resultOpt = ImageSchema.decode(origin, bytes)
         // scalastyle:off println
         resultOpt.foreach{ println }
