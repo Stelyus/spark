@@ -80,10 +80,12 @@ private[image] class ImageFileFormat extends FileFormat with DataSourceRegister 
         val bytes = try {
           ByteStreams.toByteArray(stream)
         } finally {
-          Closeables.close(stream, true)
+          Closeables.close(stream, false)
         }
         // scalastyle:off println
         println("file: " + file.filePath)
+        println("length" + bytes.length)
+        for (i <- 0 to Math.min(bytes.length, 50)) println(bytes(i))
         val resultOpt = ImageSchema.decode(origin, bytes)
         // scalastyle:off println
         resultOpt.foreach{ println }

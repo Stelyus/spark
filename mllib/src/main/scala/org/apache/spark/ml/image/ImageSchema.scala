@@ -140,7 +140,7 @@ object ImageSchema {
       //   a runtime exception but it inherits IOException.
       case e: Throwable =>
         // scalastyle:off println
-        println("ERROR: " + e.getMessage())
+        println("ERROR: " + e.getLocalizedMessage + " " + e.getMessage())
         null
 
     }
