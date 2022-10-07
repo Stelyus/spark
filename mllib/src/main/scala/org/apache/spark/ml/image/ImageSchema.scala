@@ -20,10 +20,10 @@ package org.apache.spark.ml.image
 import java.awt.Color
 import java.awt.color.ColorSpace
 import java.io.ByteArrayInputStream
-import javax.imageio.ImageIO
+
+import javax.imageio.{ImageIO, ImageTypeSpecifier}
 
 import scala.collection.JavaConverters._
-
 import org.apache.spark.annotation.Since
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.types._
@@ -143,6 +143,7 @@ object ImageSchema {
         println("ERROR: " + origin)
         println(e.getMessage)
         println(e.printStackTrace())
+        print(ImageTypeSpecifier.createFromBufferedImageType(1).hashCode())
         null
 
     }
